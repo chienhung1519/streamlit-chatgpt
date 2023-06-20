@@ -12,12 +12,12 @@ st.markdown("<h1 style='text-align: center;'>Patient ChatGPT</h1>", unsafe_allow
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Set language
-if 'language' not in st.session_state:
-    st.session_state['language'] = ""
-language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
-st.session_state['language'] = language
-st.write(st.session_state['language'])
-lang_prompt = "Response in English." if st.session_state['language'] == "English" else "請用繁體中文回覆。"
+# if 'language' not in st.session_state:
+#     st.session_state['language'] = ""
+# language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
+# st.session_state['language'] = language
+# st.write(st.session_state['language'])
+# lang_prompt = "Response in English." if st.session_state['language'] == "English" else "請用繁體中文回覆。"
 
 
 # Initialise session state variables
@@ -27,7 +27,7 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily. {lang_prompt}"}
+        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily. 請用繁體中文回覆。"}
     ]
 # if 'model_name' not in st.session_state:
 #     st.session_state['model_name'] = []
@@ -57,7 +57,7 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily. {lang_prompt}"}
+        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily. 請用繁體中文回覆。"}
     ]
     # st.session_state['number_tokens'] = []
     # st.session_state['model_name'] = []
