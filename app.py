@@ -12,7 +12,7 @@ st.markdown("<h1 style='text-align: center;'>Doctor ChatGPT</h1>", unsafe_allow_
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Set language
-language = st.sidebar.radio("Choose a language:", ("英文", "中文"))
+language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
 lang_prompt = "Response in English." if language == "英文" else "請用繁體中文回覆。"
 
 # Initialise session state variables
