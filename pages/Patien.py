@@ -32,6 +32,8 @@ if 'messages' not in st.session_state:
 #     st.session_state['total_tokens'] = []
 # if 'total_cost' not in st.session_state:
 #     st.session_state['total_cost'] = 0.0
+if 'language' not in st.session_state:
+    st.session_state['language'] = language
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
 # st.sidebar.title("Sidebar")
@@ -60,6 +62,7 @@ if clear_button:
     # st.session_state['total_cost'] = 0.0
     # st.session_state['total_tokens'] = []
     # counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
+    st.session_state['language'] = []
 
 
 # generate a response
