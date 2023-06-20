@@ -16,6 +16,7 @@ if 'language' not in st.session_state:
     st.session_state['language'] = ""
 language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
 st.session_state['language'] = language
+st.write(st.session_state['language'])
 lang_prompt = "Response in English." if st.session_state['language'] == "English" else "請用繁體中文回覆。"
 
 
