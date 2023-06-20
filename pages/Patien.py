@@ -12,8 +12,11 @@ st.markdown("<h1 style='text-align: center;'>Patient ChatGPT</h1>", unsafe_allow
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Set language
+if 'language' not in st.session_state:
+    st.session_state['language'] = ""
 language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
 lang_prompt = "Response in English." if language == "English" else "請用繁體中文回覆。"
+st.session_state['language'] = language
 
 # Initialise session state variables
 if 'generated' not in st.session_state:
@@ -32,8 +35,6 @@ if 'messages' not in st.session_state:
 #     st.session_state['total_tokens'] = []
 # if 'total_cost' not in st.session_state:
 #     st.session_state['total_cost'] = 0.0
-if 'language' not in st.session_state:
-    st.session_state['language'] = language
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
 # st.sidebar.title("Sidebar")
@@ -62,7 +63,7 @@ if clear_button:
     # st.session_state['total_cost'] = 0.0
     # st.session_state['total_tokens'] = []
     # counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
-    st.session_state['language'] = []
+    st.session_state['language'] = ""
 
 
 # generate a response
