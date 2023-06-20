@@ -15,8 +15,9 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 if 'language' not in st.session_state:
     st.session_state['language'] = ""
 language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
-lang_prompt = "Response in English." if language == "English" else "請用繁體中文回覆。"
 st.session_state['language'] = language
+lang_prompt = "Response in English." if st.session_state['language'] == "English" else "請用繁體中文回覆。"
+
 
 # Initialise session state variables
 if 'generated' not in st.session_state:
