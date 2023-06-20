@@ -11,6 +11,10 @@ st.markdown("<h1 style='text-align: center;'>Doctor ChatGPT</h1>", unsafe_allow_
 # openai.organization = "<YOUR_OPENAI_ORG_ID>"
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
+# Set language
+language = st.sidebar.radio("Choose a language:", ("英文", "中文"))
+lang_prompt = "Response in English." if language == "英文" else "請用正體中文回覆。"
+
 # Initialise session state variables
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
@@ -18,7 +22,7 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. Response in {language}."}
+        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. {lang_prompt}"}
     ]
 # if 'model_name' not in st.session_state:
 #     st.session_state['model_name'] = []
@@ -34,7 +38,6 @@ if 'messages' not in st.session_state:
 # model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
 # counter_placeholder = st.sidebar.empty()
 # counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
-language = st.sidebar.radio("Choose a language:", ("en", "zh-tw"))
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
@@ -49,7 +52,7 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. Response in {language}."}
+        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. {lang_prompt}"}
     ]
     # st.session_state['number_tokens'] = []
     # st.session_state['model_name'] = []
