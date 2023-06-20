@@ -33,6 +33,20 @@ if 'messages' not in st.session_state:
 #     st.session_state['total_tokens'] = []
 # if 'total_cost' not in st.session_state:
 #     st.session_state['total_cost'] = 0.0
+if 'page' not in st.session_state:
+    st.session_state['page'] = ""
+
+# Set page
+if st.session_state['page'] == "":
+    st.session_state['page'] = "doctor"
+if st.session_state['page'] == "patient":
+    st.session_state['generated'] = []
+    st.session_state['past'] = []
+    st.session_state['messages'] = [
+        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience."},
+        {"role": "system", f"content": lang_prompt}
+    ]
+    st.session_state['page'] = "doctor"
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
 # st.sidebar.title("Sidebar")
