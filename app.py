@@ -34,7 +34,7 @@ if 'messages' not in st.session_state:
 # model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
 # counter_placeholder = st.sidebar.empty()
 # counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
-language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
+language = st.sidebar.radio("Choose a language:", ("English", "Traditional Chinese"))
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
