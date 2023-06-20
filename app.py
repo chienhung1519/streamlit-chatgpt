@@ -18,7 +18,7 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        {"role": "system", "content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience."}
+        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. Response in {language}."}
     ]
 # if 'model_name' not in st.session_state:
 #     st.session_state['model_name'] = []
@@ -34,6 +34,7 @@ if 'messages' not in st.session_state:
 # model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
 # counter_placeholder = st.sidebar.empty()
 # counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
+language = st.sidebar.radio("Choose a language:", ("English", "Chinese"))
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
@@ -48,7 +49,7 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", "content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience."}
+        {"role": "system", f"content": "Please play the role of a empathetic and kind psychiatrist. Your task is to conduct a professional diagnosis conversation with me based on the DSM-5 criteria, but using your own language. Please only ask one question at a time. You need to ask in-depth questions, such as the duration, causes and specific manifestations of some symptoms. You need to use various empathetic strategies, such as understanding, support and encouragement to give me a more comfortable experience. Response in {language}."}
     ]
     # st.session_state['number_tokens'] = []
     # st.session_state['model_name'] = []
