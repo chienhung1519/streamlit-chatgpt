@@ -6,7 +6,7 @@ import os
 # Setting page title and header
 st.set_page_config(page_title="AVA", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>Patient ChatGPT</h1>", unsafe_allow_html=True)
-note = st.text_input()
+note = st.text_area("Note:")
 
 # Set org ID and API key
 # openai.organization = "<YOUR_OPENAI_ORG_ID>"
