@@ -6,6 +6,7 @@ import os
 # Setting page title and header
 st.set_page_config(page_title="AVA", page_icon=":robot_face:")
 st.markdown("<h1 style='text-align: center;'>Patient ChatGPT</h1>", unsafe_allow_html=True)
+note = st.text_input()
 
 # Set org ID and API key
 # openai.organization = "<YOUR_OPENAI_ORG_ID>"
@@ -31,7 +32,7 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily."},
+        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. Please talk to me based on the below clinical note. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily.\n\n### Note:\n{note}\n"},
         {"role": "system", f"content": lang_prompt}
     ]
 # if 'model_name' not in st.session_state:
@@ -76,7 +77,7 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. You are experiencing the following symptoms: 1. restlessness 2. anxious mood 3. depressed mood 4. mood swing 5. loss of interest 6. difficulty in concentrating 7. diminished self-esteem 8. fatigue 9. appetite and weight change (increase) 10. suicide and self-harm ideation/behaviors 11. somatic symptoms (lower back pain, rib pain, headaches, slowed reaction). Please talk to me based on the above symptom list. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily."},
+        {"role": "system", "content": f"Please play the role of a patient, who is currently chatting with a doctor. Please talk to me based on the below clinical note. You cannot mention too many symptoms at once, only one symptom per round. You should express your symptoms in a vague and colloquial way, and relate them to your life experiences, without using professional terms. You can have emotional fluctuations during the conversation. You have a resistance towards doctors, feeling that they cannot help you, so you do not want to reveal some feelings easily.\n\n### Note:\n{note}\n"},
         {"role": "system", f"content": lang_prompt}
     ]
     # st.session_state['number_tokens'] = []
@@ -135,6 +136,7 @@ with container:
 
 if st.session_state['generated']:
     with response_container:
+        st.write(note)
         for i in range(len(st.session_state['generated'])):
             message(st.session_state["past"][i], is_user=True, key=str(i) + '_user')
             message(st.session_state["generated"][i], key=str(i))
